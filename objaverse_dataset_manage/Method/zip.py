@@ -28,7 +28,14 @@ def zipFolder(folders_folder_path: str, zip_folder_path: str) -> bool:
 
         print("[INFO][zip::zipFolder]")
         print("\t start zip folder:", folder_name, "...")
-        command = "zip -r " + tmp_zip_file_path + " " + folder_path
+        command = (
+            "cd "
+            + folders_folder_path
+            + " && zip -r "
+            + tmp_zip_file_path
+            + " ./"
+            + folder_name
+        )
         valid_command = command.replace("\\", "\\\\")
 
         status = os.system(valid_command)
