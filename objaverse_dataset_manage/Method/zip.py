@@ -2,6 +2,7 @@ import os
 
 from objaverse_dataset_manage.Method.path import renameFile
 
+
 def zipFolder(folders_folder_path: str, zip_folder_path: str) -> bool:
     if not os.path.exists(folders_folder_path):
         print("[ERROR][zip::zipFolder]")
@@ -19,16 +20,16 @@ def zipFolder(folders_folder_path: str, zip_folder_path: str) -> bool:
         if not os.path.isdir(folder_path):
             continue
 
-        zip_file_path = zip_folder_path + folder_name + '.zip'
+        zip_file_path = zip_folder_path + folder_name + ".zip"
         if os.path.exists(zip_file_path):
             continue
 
-        tmp_zip_file_path = zip_folder_path + folder_name + '_tmp.zip'
+        tmp_zip_file_path = zip_folder_path + folder_name + "_tmp.zip"
 
         print("[INFO][zip::zipFolder]")
-        print('\t start zip folder:', folder_name, '...')
-        command = 'zip -r ' + tmp_zip_file_path + ' ' + folder_path
-        valid_command = command.replace('\\', '\\\\')
+        print("\t start zip folder:", folder_name, "...")
+        command = "zip -r " + tmp_zip_file_path + " " + folder_path
+        valid_command = command.replace("\\", "\\\\")
 
         status = os.system(valid_command)
 
@@ -41,6 +42,7 @@ def zipFolder(folders_folder_path: str, zip_folder_path: str) -> bool:
         renameFile(tmp_zip_file_path, zip_file_path)
 
     return True
+
 
 def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
     if not os.path.exists(zip_files_folder_path):
@@ -58,10 +60,10 @@ def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
 
         zip_file_path = zip_files_folder_path + zip_filename
 
-        print('[INFO][zip::unzipFolder]')
-        print('\t start unzip file:', zip_filename, '...')
-        command = 'unzip -u ' + zip_file_path + ' -d ' + unzip_folder_path
-        valid_command = command.replace('\\', '\\\\')
+        print("[INFO][zip::unzipFolder]")
+        print("\t start unzip file:", zip_filename, "...")
+        command = "unzip -u " + zip_file_path + " -d " + unzip_folder_path
+        valid_command = command.replace("\\", "\\\\")
 
         status = os.system(valid_command)
 
@@ -69,6 +71,6 @@ def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
             print("[ERROR][zip::unzipFolder]")
             print("\t unzip folder failed!")
             print("\t command:", valid_command)
-            return False
+            continue
 
     return True
