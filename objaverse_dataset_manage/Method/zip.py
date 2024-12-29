@@ -78,6 +78,6 @@ def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
             print("[ERROR][zip::unzipFolder]")
             print("\t unzip folder failed!")
             print("\t command:", valid_command)
-            continue
+            return False
 
     return True
