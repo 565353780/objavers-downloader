@@ -65,6 +65,13 @@ def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
         if zip_filename[:4] != "000-" or zip_filename[-4:] != ".zip":
             continue
 
+        """
+        zip_id = int(zip_filename[4:7])
+
+        if zip_id in [121, 134, 136, 142, 144, 146, 147, 148, 149] or zip_id <= 151:
+            continue
+        """
+
         zip_file_path = zip_files_folder_path + zip_filename
 
         print("[INFO][zip::unzipFolder]")
@@ -80,4 +87,6 @@ def unzipFolder(zip_files_folder_path: str, unzip_folder_path: str) -> bool:
             print("\t command:", valid_command)
             return False
 
+    print("[INFO][zip::unzipFolder]")
+    print("\t finish unzipFolder!")
     return True
